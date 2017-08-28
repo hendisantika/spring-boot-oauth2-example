@@ -1,7 +1,7 @@
 package com.hendisantika.springbootoauth2.repository;
 
 import com.hendisantika.springbootoauth2.model.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,5 +15,12 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
+    /**
+     * Find a user by username
+     *
+     * @param username the user's username
+     * @return user which contains the user with the given username or null.
+     */
+    User findOneByUsername(String username);
 }
