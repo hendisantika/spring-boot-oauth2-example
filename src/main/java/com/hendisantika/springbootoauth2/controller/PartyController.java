@@ -5,10 +5,12 @@ import com.hendisantika.springbootoauth2.repository.PartyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
@@ -29,30 +31,30 @@ public class PartyController {
     @Autowired
     private PartyRepository partyRepo;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public ResponseEntity<Collection<Party>> getParties() {
         return new ResponseEntity<>(partyRepo.findAll(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Party> getParty(@PathVariable long id) {
-        Party party = partyRepo.findOne(id);
+        Party party = partyRepo.findById(id).get();
 
         if (party != null) {
-            return new ResponseEntity<>(partyRepo.findOne(id), HttpStatus.OK);
+            return new ResponseEntity<>(partyRepo.findById(id).get(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(partyRepo.findOne(id), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(partyRepo.findById(id).get(), HttpStatus.NOT_FOUND);
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity<?> addParty(@RequestBody Party party) {
         return new ResponseEntity<>(partyRepo.save(party), HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deletePartyn(@PathVariable long id) {
-        partyRepo.delete(id);
+        partyRepo.deleteById(id);
 
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
