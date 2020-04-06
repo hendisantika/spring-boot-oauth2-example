@@ -12,5 +12,5 @@ import com.hendisantika.springbootoauth2.model.Person;
  * To change this template use File | Settings | File Templates.
  */
 public interface BuddyService {
-    public Person findBuddy(Person person);
+    Person findBuddy(Person person);
 }
