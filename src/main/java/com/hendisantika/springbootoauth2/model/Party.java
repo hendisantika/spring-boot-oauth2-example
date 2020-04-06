@@ -1,6 +1,7 @@
 package com.hendisantika.springbootoauth2.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,6 +28,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "parties")
+@Data
 public class Party {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,36 +46,4 @@ public class Party {
             joinColumns = @JoinColumn(name = "party_id", referencedColumnName = "party_id"),
             inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "person_id"))
     private Set<Person> people = new HashSet<Person>();
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Set<Person> getPeople() {
-        return people;
-    }
-
-    public void setPeople(Set<Person> people) {
-        this.people = people;
-    }
 }

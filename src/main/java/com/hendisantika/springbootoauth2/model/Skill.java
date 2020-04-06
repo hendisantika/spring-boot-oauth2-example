@@ -1,6 +1,7 @@
 package com.hendisantika.springbootoauth2.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,6 +26,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "skills")
+@Data
 public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,36 +42,4 @@ public class Skill {
     @JoinColumn (name="person_id")
     @JsonBackReference
     private Person person;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Level getLevel() {
-        return level;
-    }
-
-    public void setLevel(Level level) {
-        this.level = level;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 }
