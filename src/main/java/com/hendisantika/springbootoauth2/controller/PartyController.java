@@ -53,10 +53,10 @@ public class PartyController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deletePartyn(@PathVariable long id) {
+    public ResponseEntity<Void> deleteParty(@PathVariable long id) {
         partyRepo.deleteById(id);
 
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
